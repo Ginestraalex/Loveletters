@@ -122,6 +122,11 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'JEU\\PlatformBundle\\Controller\\DefaultController::indexAction',  '_route' => 'jeu_platform_homepage',);
         }
 
+        // hello_the_world
+        if ('/hello-world' === $pathinfo) {
+            return array (  '_controller' => 'JEU\\PlatformBundle\\Controller\\AdvertController::indexAction',  '_route' => 'hello_the_world',);
+        }
+
         // homepage
         if ('' === $trimmedPathinfo) {
             if (substr($pathinfo, -1) !== '/') {

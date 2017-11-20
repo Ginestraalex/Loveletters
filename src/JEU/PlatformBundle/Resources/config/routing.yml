@@ -1,3 +1,7 @@
 jeu_platform_homepage:
     path:     /
     defaults: { _controller: JEUPlatformBundle:Default:index }
+    
+hello_the_world:
+    path:     /hello-world
+    defaults: { _controller: JEUPlatformBundle:Advert:index }
