@@ -1,40 +1,128 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace JEU\PlatformBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
- * Description of Manche
+ * Manche
  *
- * @author Mahr
+ * @ORM\Table(name="manche")
+ * @ORM\Entity(repositoryClass="JEU\PlatformBundle\Repository\MancheRepository")
  */
-class Manche {
-    private $valeur;
+class Manche
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="no", type="integer", nullable=true)
+     */
     private $no;
-    private $winner;
-		
-    public function get_valeur(){
-        return $this->$valeur; 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="gagnant", type="string", length=255)
+     */
+    private $gagnant;
+
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="listeJoueur", type="array", nullable=true)
+     */
+    private $listeJoueur;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
-    public function get_no(){ 
-        return $this->$no; 
-    }
-    
-    public function set_no($value){ 
-        $this->$no = $value; 
+    /**
+     * Set no
+     *
+     * @param integer $no
+     *
+     * @return Manche
+     */
+    public function setNo($no)
+    {
+        $this->no = $no;
+
+        return $this;
     }
 
-    public function get_winner(){ 
-        return $this->$winner; 
+    /**
+     * Get no
+     *
+     * @return int
+     */
+    public function getNo()
+    {
+        return $this->no;
     }
 
-    public function set_winner($value){ 
-        $this->$winner = $value;
+    /**
+     * Set gagnant
+     *
+     * @param string $gagnant
+     *
+     * @return Manche
+     */
+    public function setGagnant($gagnant)
+    {
+        $this->gagnant = $gagnant;
+
+        return $this;
+    }
+
+    /**
+     * Get gagnant
+     *
+     * @return string
+     */
+    public function getGagnant()
+    {
+        return $this->gagnant;
+    }
+
+    /**
+     * Set listeJoueur
+     *
+     * @param array $listeJoueur
+     *
+     * @return Manche
+     */
+    public function setListeJoueur($listeJoueur)
+    {
+        $this->listeJoueur = $listeJoueur;
+
+        return $this;
+    }
+
+    /**
+     * Get listeJoueur
+     *
+     * @return array
+     */
+    public function getListeJoueur()
+    {
+        return $this->listeJoueur;
     }
 }
+

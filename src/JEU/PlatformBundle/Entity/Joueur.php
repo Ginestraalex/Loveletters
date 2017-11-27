@@ -5,12 +5,12 @@ namespace JEU\PlatformBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Advert
+ * Joueur
  *
- * @ORM\Table(name="advert")
- * @ORM\Entity(repositoryClass="JEU\PlatformBundle\Repository\AdvertRepository")
+ * @ORM\Table(name="joueur")
+ * @ORM\Entity(repositoryClass="JEU\PlatformBundle\Repository\JoueurRepository")
  */
-class Advert
+class Joueur
 {
     /**
      * @var int
@@ -25,7 +25,7 @@ class Advert
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=8)
+     * @ORM\Column(name="password", type="string", length=255)
      */
     private $password;
 
@@ -36,23 +36,23 @@ class Advert
      */
     private $score;
 
-
+    public function __construct(){}
     /**
      * Set id
      *
-    * @param string $password
-     *
-     * @return Advert
+     * @param string $password
+     * 
+     * @return int
      */
-    public function setId($id)
+    public function setId($ide)
     {
-        $this->id = $id;
+        $this->id = $ide;
 
         return $this;
     }
-    
-     /**
-     * Set id
+
+    /**
+     * Get id
      *
      * @return int
      */
@@ -68,7 +68,7 @@ class Advert
      *
      * @param string $password
      *
-     * @return Advert
+     * @return Joueur
      */
     public function setPassword($password)
     {
@@ -92,7 +92,7 @@ class Advert
      *
      * @param integer $score
      *
-     * @return Advert
+     * @return Joueur
      */
     public function setScore($score)
     {

@@ -1,43 +1,93 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace JEU\PlatformBundle\Entity;
 
-/**
- * Description of Pioche
- *
- * @author Mahr
- */
-class Pioche {
+use Doctrine\ORM\Mapping as ORM;
 
-    private $valeur;
+/**
+ * Pioche
+ *
+ * @ORM\Table(name="pioche")
+ * @ORM\Entity(repositoryClass="JEU\PlatformBundle\Repository\PiocheRepository")
+ */
+class Pioche
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
 
     /**
-     * Set id
+     * @var array
      *
-    * @param string $valeur
-     *
-     * @return Advert
+     * @ORM\Column(name="listeCarte", type="array", nullable=true)
      */
-    public function setId($val)
-    {
-        $this->valeur = $val;
+    private $listeCarte;
 
-        return $this;
+    public function __construct(){
+        $listeCarte = array(new Carte("8"));
+        array_push($listeCarte,new Carte("7"));
+        array_push($listeCarte,new Carte("6"));
+        array_push($listeCarte,new Carte("5"));
+        array_push($listeCarte,new Carte("5"));
+        array_push($listeCarte,new Carte("4"));
+        array_push($listeCarte,new Carte("4"));
+        array_push($listeCarte,new Carte("3"));
+        array_push($listeCarte,new Carte("3"));
+        array_push($listeCarte,new Carte("2"));
+        array_push($listeCarte,new Carte("2"));
+        array_push($listeCarte,new Carte("1"));
+        array_push($listeCarte,new Carte("1"));
+        array_push($listeCarte,new Carte("1"));
+        array_push($listeCarte,new Carte("1"));
+        
     }
     
-     /**
-     * Set id
+    public function melanger(){
+        for($i;$i<16;$i++){
+            $r= rand(0,15);
+            $tmp=$listeCarte[$i];
+            $listeCarte[$i]=$listeCarte[$r];
+            $listeCarte[$r]=$tmp;
+        }
+    }
+
+    /**
+     * Get id
      *
      * @return int
      */
     public function getId()
     {
-        return $this->valeur;
+        return $this->id;
+    }
+
+    /**
+     * Set listeCarte
+     *
+     * @param array $listeCarte
+     *
+     * @return Pioche
+     */
+    public function setListeCarte($listeCarte)
+    {
+        $this->listeCarte = $listeCarte;
+
+        return $this;
+    }
+
+    /**
+     * Get listeCarte
+     *
+     * @return array
+     */
+    public function getListeCarte()
+    {
+        return $this->listeCarte;
     }
 }
+

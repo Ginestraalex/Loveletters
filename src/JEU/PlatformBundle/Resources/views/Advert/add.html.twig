@@ -6,7 +6,7 @@
   <h2>Connexion</h2>
 
 <div class="well">
-    <form method="post" action="connexion.php">
+    <form method="post" action="{JEUPlatformBundle:Advert:add}">
     <fieldset>
     <legend>Connexion</legend>
     <p>
@@ -15,7 +15,7 @@
     </p>
     </fieldset>
     <p><input type="submit" value="Connexion" /></p></form>
-    <a href="./insription.php">Pas encore inscrit ?</a>
+    <a href="{{ path('jeu_platform_signin') }}">Pas encore inscrit ?</a>
      
     </div>
     </body>

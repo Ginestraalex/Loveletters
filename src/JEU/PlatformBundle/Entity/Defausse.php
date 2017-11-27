@@ -1,21 +1,66 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 namespace JEU\PlatformBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
- * Description of Defausse
+ * Defausse
  *
- * @author Mahr
+ * @ORM\Table(name="defausse")
+ * @ORM\Entity(repositoryClass="JEU\PlatformBundle\Repository\DefausseRepository")
  */
-class Defausse {
-    private $valeur;
-    public function get_valeur(){
-        return $this->valeur;
+class Defausse
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="listeCarte", type="array", nullable=true)
+     */
+    private $listeCarte;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set listeCarte
+     *
+     * @param array $listeCarte
+     *
+     * @return Defausse
+     */
+    public function setListeCarte($listeCarte)
+    {
+        $this->listeCarte = $listeCarte;
+
+        return $this;
+    }
+
+    /**
+     * Get listeCarte
+     *
+     * @return array
+     */
+    public function getListeCarte()
+    {
+        return $this->listeCarte;
     }
 }
+

@@ -1,31 +1,49 @@
-{% extends "JEUPlatformBundle::layout.html.twig" %}
+    <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-{% block title %}
-  Lecture d'un joueur - {{ parent() }}
-{% endblock %}
+    <title>{% block title %}JEU Plateforme{% endblock %}</title>
 
-{% block jeuplatform_body %}
+    {% block stylesheets %}
+      {# On charge le CSS de bootstrap depuis le site directement #}
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    {% endblock %}
+  </head>
 
-  <h2>{{ advert.title }}</h2>
-  <i>Par {{ advert.author }}, le {{ advert.date|date('d/m/Y') }}</i>
+  <body>
+  <div class="container">
+    <div id="header" class="jumbotron">
+      <h1>Love letters</h1>
+    </div>
 
-  <div class="well">
-    {{ advert.content }}
+    <div class="row">
+      <div id="menu" class="col-md-3">
+        <h3>Membre</h3>
+        <ul class="nav nav-pills nav-stacked">
+          <li><a href="{{ path('jeu_platform_edit') }}">Accueil</a></li>
+          <li><a href="{{ path('jeu_platform_edit') }}">Quitter la partie</a></li>
+          <li><a href="{{ path('jeu_platform_add') }}">Déconnexion</a></li>
+        </ul>
+
+        {% block body %}
+        {% endblock %}
+      </div>
+    </div>
+
+    <hr>
+
+    <footer>
+      <p>The sky's the limit © {{ 'now'|date('Y') }} and beyond.</p>
+    </footer>
   </div>
 
-  <p>
-    <a href="{{ path('jeu_platform_home') }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-chevron-left"></i>
-      Retour à la liste
-    </a>
-    <a href="{{ path('jeu_platform_edit', {'id': advert.id}) }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-edit"></i>
-      Modifier l'annonce
-    </a>
-    <a href="{{ path('jeu_platform_delete', {'id': advert.id}) }}" class="btn btn-danger">
-      <i class="glyphicon glyphicon-trash"></i>
-      Supprimer l'annonce
-    </a>
-  </p>
+  {% block javascripts %}
+    {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  {% endblock %}
 
-{% endblock %}
+  </body>
+</html>
