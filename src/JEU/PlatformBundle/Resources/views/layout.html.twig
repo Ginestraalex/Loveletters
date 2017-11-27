@@ -1,0 +1,15 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+  Joueurs - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+  <h1>Joueurs</h1>
+
+  <hr>
+
+  {% block jeuplatform_body %}
+  {% endblock %}
+
+{% endblock %}

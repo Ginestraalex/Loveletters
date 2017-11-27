@@ -1,0 +1,3 @@
+parameters:
+    app_webmaster: moi-même
+    #variable globale utilisé dans les twig

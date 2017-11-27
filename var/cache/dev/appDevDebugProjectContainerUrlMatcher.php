@@ -122,9 +122,27 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'JEU\\PlatformBundle\\Controller\\DefaultController::indexAction',  '_route' => 'jeu_platform_homepage',);
         }
 
-        // hello_the_world
-        if ('/hello-world' === $pathinfo) {
-            return array (  '_controller' => 'JEU\\PlatformBundle\\Controller\\AdvertController::indexAction',  '_route' => 'hello_the_world',);
+        if (0 === strpos($pathinfo, '/platform')) {
+            // jeu_platform_home
+            if ('/platform' === $pathinfo) {
+                return array (  '_controller' => 'JEU\\PlatformBundle\\Controller\\AdvertController::indexAction',  '_route' => 'jeu_platform_home',);
+            }
+
+            // jeu_platform_signin
+            if ('/platform/signin' === $pathinfo) {
+                return array (  '_controller' => 'JEU\\PlatformBundle\\Controller\\AdvertController::signinAction',  '_route' => 'jeu_platform_signin',);
+            }
+
+            // jeu_platform_view
+            if (0 === strpos($pathinfo, '/platform/advert') && preg_match('#^/platform/advert(?:/(?P<id>\\d{1}))?$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'jeu_platform_view')), array (  '_controller' => 'JEU\\PlatformBundle\\Controller\\AdvertController::viewAction',  'id' => 8,));
+            }
+
+            // jeu_platform_add
+            if ('/platform/add' === $pathinfo) {
+                return array (  '_controller' => 'JEU\\PlatformBundle\\Controller\\AdvertController::addAction',  '_route' => 'jeu_platform_add',);
+            }
+
         }
 
         // homepage

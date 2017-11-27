@@ -1,7 +1,40 @@
+# Ajouter un préfixe lors de l'import de nos routes
+#jeu_platform:
+#    resource: "@JEUPlatformBundle/Resources/config/routing.yml"
+#    prefix: /platform
+
 jeu_platform_homepage:
     path:     /
     defaults: { _controller: JEUPlatformBundle:Default:index }
     
-hello_the_world:
-    path:     /hello-world
+jeu_platform_home:
+    path:     /platform
     defaults: { _controller: JEUPlatformBundle:Advert:index }
+    
+jeu_platform_signin:
+    path:     /platform/signin
+    defaults: { _controller: JEUPlatformBundle:Advert:signin }
+
+jeu_platform_view:
+    path:     /platform/advert/{id}
+    defaults: { _controller: JEUPlatformBundle:Advert:view ,id: 8}
+    requirements:
+        id:    \d{1} 
+        #parametres requis alors que defaults: parametre optionnel et valeur par défaut
+ 
+jeu_platform_add:
+    path:     /platform/add
+    defaults: { _controller: JEUPlatformBundle:Advert:add }
+    
+        
+jeu_platform_add:
+    path:     /platform/edit/{id}
+    defaults: { _controller: JEUPlatformBundle:Advert:edit }
+    requirements:
+        id:    \d+ 
+        
+jeu_platform_add:
+    path:     /platform/delete/{id}
+    defaults: { _controller: JEUPlatformBundle:Advert:delete }
+    requirements:
+        id:    \d+ 
