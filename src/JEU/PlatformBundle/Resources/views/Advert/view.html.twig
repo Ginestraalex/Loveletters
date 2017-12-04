@@ -17,6 +17,21 @@
     <div id="header" class="jumbotron">
       <h1>Love letters</h1>
     </div>
+      <div id="joueur1" align="middle">
+			Player 1
+            <img src="{{app.request.basepath}}/image/verso.jpg" height = 200  width = 150 alt="verso"/>
+		</div>
+
+		<div align="center">
+<img src="{{app.request.basepath}}/image/fond.jpg" height = 600  width = 1000 alt="plateau" align="center" />
+<img src="{{app.request.basepath}}/image/verso.jpg" height = 200  width = 150 alt="verso" align="center" float:right onclick="tirerCarte()"/>
+		</div>
+
+		<div id = "joueur2" align="middle"> 
+			Player 2
+<img src="{{app.request.basepath}}/image/verso.jpg" height = 200  width = 150 alt="verso"/>
+		</div>
+
 
     <div class="row">
       <div id="menu" class="col-md-3">
@@ -43,6 +58,24 @@
     {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+                        
+				function tirerCarte(){
+				document.getElementById('joueur1').innerHTML = '<div> Player 1 </div>' ;
+				document.getElementById('joueur1').innerHTML += '<img src="{{app.request.basepath}}/image/verso.jpg" width="150" height="200" />';
+				document.getElementById('joueur1').innerHTML += '<img src="{{app.request.basepath}}/image/verso.jpg" width="150" height="200"/>';
+				document.getElementById('joueur2').innerHTML = '<div> Player 2 </div>' ;
+                                document.getElementById('joueur2').innerHTML += '<img src="{{app.request.basepath}}/image/verso.jpg" width="150" height="200"/>';
+                                document.getElementById('joueur2').innerHTML += '<img src="{{app.request.basepath}}/image/verso.jpg" width="150" height="200" />';
+			};
+                        
+                        function jouerCarte(){
+				document.getElementById('joueur1').innerHTML = '<div align="center">  </div>' ;
+				document.getElementById('joueur1').innerHTML += '<img src="../Applications/MAMP/htdocs/Symfony/web/image/verso.jpg" width="150" height="200" />';
+				document.getElementById('joueur1').innerHTML += '<img src="../Applications/MAMP/htdocs/Symfony/web/image/verso.jpg" width="150" height="200"/>';
+			};
+		
+		</script>
   {% endblock %}
 
   </body>

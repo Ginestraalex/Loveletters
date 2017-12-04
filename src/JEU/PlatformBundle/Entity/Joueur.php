@@ -36,7 +36,10 @@ class Joueur
      */
     private $score;
 
-    public function __construct(){}
+    public function __construct(){
+        
+    }
+    
     /**
      * Set id
      *

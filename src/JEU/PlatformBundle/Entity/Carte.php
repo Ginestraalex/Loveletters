@@ -46,29 +46,32 @@ class Carte
     {
         $valeur = $v;
         switch ($valeur) {
+            case "9":
+                $url = "/Applications/MAMP/htdocs/Symfony/src/image/verso.png";
+                break;
             case "8":
-                $url = "/Applications/MAMP/htdocs/Symfony/src/image/Princess.png";
+                $url = "/Applications/MAMP/htdocs/Symfony/src/image/princess.png";
                 break;
             case "7":
-                $url = "/Applications/MAMP/htdocs/Symfony/src/image/Countess.png";
+                $url = "/Applications/MAMP/htdocs/Symfony/src/image/countess.png";
                 break;
             case "6":
-                $url = "/Applications/MAMP/htdocs/Symfony/src/image/King.png";
+                $url = "/Applications/MAMP/htdocs/Symfony/src/image/king.png";
                 break;
             case "5":
-                $url = "/Applications/MAMP/htdocs/Symfony/src/image/Prince.png";
+                $url = "/Applications/MAMP/htdocs/Symfony/src/image/prince.png";
                 break;
             case "4":
-                $url = "/Applications/MAMP/htdocs/Symfony/src/image/Handmaid.png";
+                $url = "/Applications/MAMP/htdocs/Symfony/src/image/handmaid.png";
                 break;
             case "3":
-                $url = "/Applications/MAMP/htdocs/Symfony/src/image/Baron.png";
+                $url = "/Applications/MAMP/htdocs/Symfony/src/image/baron.png";
                 break;
             case "2":
-                $url = "/Applications/MAMP/htdocs/Symfony/src/image/Priest.png";
+                $url = "/Applications/MAMP/htdocs/Symfony/src/image/priest.png";
                 break;
             case "1":
-                $url = "/Applications/MAMP/htdocs/Symfony/src/image/Guard.png";
+                $url = "/Applications/MAMP/htdocs/Symfony/src/image/guard.png";
                 break;
         }
     }

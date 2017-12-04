@@ -44,7 +44,7 @@ class Pioche
         array_push($listeCarte,new Carte("1"));
         array_push($listeCarte,new Carte("1"));
         array_push($listeCarte,new Carte("1"));
-        
+        $id=16;
     }
     
     public function melanger(){
@@ -80,6 +80,17 @@ class Pioche
         return $this;
     }
 
+    /**
+     * Get listeCarte
+     *
+     * @return array
+     */
+    public function getCarte()
+    {
+        $id=$id-1;
+        return $this->listeCarte[$id+1];
+    }
+    
     /**
      * Get listeCarte
      *

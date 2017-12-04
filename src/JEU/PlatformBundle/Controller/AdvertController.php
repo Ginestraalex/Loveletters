@@ -6,34 +6,13 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoudation\RedirectResponse;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use JEU\PlatformBundle\Entity\Joueur;
 
 class AdvertController extends Controller{
    public function indexAction()
                 {
-                    $listAdverts = array(
-      array(
-        'title'   => 'Diablox9',
-        'id'      => 1,
-        'author'  => 'Alexandre',
-        'content' => '…',
-        'date'    => new \Datetime()),
-      array(
-        'title'   => 'Popeye',
-        'id'      => 2,
-        'author'  => 'Hugo',
-        'content' => '...',
-        'date'    => new \Datetime()),
-      array(
-        'title'   => 'Roi des Gunners',
-        'id'      => 3,
-        'author'  => 'Mathieu',
-        'content' => '…',
-        'date'    => new \Datetime())
-                        );
-                    return $this->render('JEUPlatformBundle:Advert:add.html.twig', array(
-      'listAdverts' => $listAdverts,
-    ));
+                    return $this->render('JEUPlatformBundle:Advert:add.html.twig');
                     
                 }
    public function viewAction()
@@ -45,38 +24,9 @@ class AdvertController extends Controller{
                 } 
    public function addAction(Request $request)
                 {
-       /*
-       // on teste si le visiteur a soumis le formulaire de connexion
-        if (isset($_POST['connexion']) && $_POST['connexion'] == 'Connexion') {
-            if ((isset($_POST['login']) && !empty($_POST['login'])) && (isset($_POST['password']) && !empty($_POST['password']))) {
-  
-                $base = mysql_connect ('localhost','8889','root','root','/Applications/MAMP/tmp/mysql/mysql.sock');
-                mysql_select_db ('test', $base);
-       
-      // on teste si une entrée de la base contient ce couple login / pass
-      $sql = 'SELECT count(*) FROM advert WHERE login="'.mysql_escape_string($_POST['login']).'" AND pass_md5="'.mysql_escape_string(md5($_POST['password'])).'"';
-      $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());
-      $data = mysql_fetch_array($req);
-       
-      mysql_free_result($req);
-      mysql_close();
-       
-      // si on obtient une réponse, alors l'utilisateur est un membre
-      if ($data[0] == 1) {
-         session_start();
-         $_SESSION['login'] = $_POST['login'];
-         return $this->redirectToRoute('jeu_platform_add');
-         exit();
-      }
-      // si on ne trouve aucune réponse, le visiteur s'est trompé 
-   }
-   else {
-      $erreur = 'Au moins un des champs est vide.';
-   } 
-} */
        
 
-                    // Création de l'entité
+   /*                 // Création de l'entité
     $advert = new \JEU\PlatformBundle\Entity\Joueur;
     $advert->setId(10);
     $advert->setPassword('Alexandre');
@@ -97,9 +47,20 @@ class AdvertController extends Controller{
     if ($request->isMethod('POST')) {
       $request->getSession()->getFlashBag()->add('notice', 'Annonce bien enregistrée.');
       return $this->redirect($this->generateUrl('jeu_platform_view', array('id' => $advert->getId())));
+    }*/
+    
+    if ($request->isMethod('POST')) {  
+    $verif1=$this->getDoctrine()->getRepository("JEUPlatformBundle:Entity:Joueur")->find($_POST['pseudo']);
+    $verif2=$this->getDoctrine()->getRepository("JEUPlatformBundle:Entity:Joueur")->findOneByPassword($_POST['password']);
+    $verif3=$verif2->getId();
+    if($verif1!=$verif3){
+        throw $this->createNotFoundException("Aucun membre de cet id");
+    }else{
+        return $this->render('JEUPlatformBundle:Advert:view.html.twig');
+    }}else{
+        return $this->render('JEUPlatformBundle:Advert:add.html.twig');
     }
-
-    return $this->render('JEUPlatformBundle:Advert:add.html.twig');
+    
   }
 
        
@@ -108,9 +69,9 @@ class AdvertController extends Controller{
                 
     public function signinAction(Request $request)
     {
-        if ($request->isMethod('POST')) {
+       // if ($request->isMethod('POST')) {
    // On récupère le repository
-    $repository = $this->getDoctrine()
+    /*$repository = $this->getDoctrine()
       ->getManager()
       ->getRepository('JEUPlatformBundle:Joueur')
     ;
@@ -121,7 +82,7 @@ class AdvertController extends Controller{
     // $advert est donc une instance de OC\PlatformBundle\Entity\Advert
     // ou null si l'id $id  n'existe pas, d'où ce if :
     if ( $advert == null) {
-      $ne = new \JEU\PlatformBundle\Entity\Joueur;
+     $ne = new \JEU\PlatformBundle\Entity\Joueur;
     $ne->setId($_POST['login']);
     $ne->setPassword($_POST['password']);
     $ne->setScore(0);
@@ -138,10 +99,11 @@ class AdvertController extends Controller{
     // Étape 2 : On « flush » tout ce qui a été persisté avant
     $em->flush();
     return $this->render('JEUPlatformBundle:Advert:view.html.twig');
-    }
         }else{
+        */
         return $this->render('JEUPlatformBundle:Advert:form.html.twig');
-    }
+        //}
+    
           
       
         
@@ -221,7 +183,39 @@ class AdvertController extends Controller{
   }
   
   public function connexionAction(){
+      //$request=$this->get('request');
+      //($request->getMethod()=='POST'){
+         // $id->$request->get('pseudo');
+          // $pass->$request->get('password');
       
+      /*
+     if($request->isMethod('POST')){*/
+      $id=filter_input(INPUT_POST, 'pseudo');
+      $pass=filter_input(INPUT_POST, 'password');
+    $verif1=$this->getDoctrine()->getRepository("JEUPlatformBundle:Entity:Joueur")->find($id);
+    if($verif1){
+        throw $this->createNotFoundException("Cet id existe déjà");
+    }else{
+    $advert = new \JEU\PlatformBundle\Entity\Joueur;
+    $advert->setId($id);
+    $advert->setPassword($pass);
+    $advert->setScore(0);
+    // On peut ne pas définir ni la date ni la publication,
+    // car ces attributs sont définis automatiquement dans le constructeur
+
+    // On récupère l'EntityManager
+    $em = $this->getDoctrine()->getManager();
+
+    // Étape 1 : On « persiste » l'entité
+    $em->persist($advert);
+
+    // Étape 2 : On « flush » tout ce qui a été persisté avant
+    $em->flush();
+    return $this->render('JEUPlatformBundle:Advert:view.html.twig');
+    }
+     /*}else{
+         return $this->render('JEUPlatformBundle:Advert:form.html.twig');
+     }*/
   }
   
   public function deconnexionAction(){
