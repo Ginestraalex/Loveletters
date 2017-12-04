@@ -17,17 +17,23 @@
     <div id="header" class="jumbotron">
       <h1>Love letters</h1>
     </div>
-      <div id="joueur1" align="middle">
+      <div id="joueur1" align="center">
 			Player 1
             <img src="{{app.request.basepath}}/image/verso.jpg" height = 200  width = 150 alt="verso"/>
 		</div>
 
-		<div align="center">
-<img src="{{app.request.basepath}}/image/fond.jpg" height = 600  width = 1000 alt="plateau" align="center" />
-<img src="{{app.request.basepath}}/image/verso.jpg" height = 200  width = 150 alt="verso" align="center" float:right onclick="tirerCarte()"/>
+		<div style="background-image:url({{app.request.basepath}}/image/fond.jpg); float:center ; background-size: cover ; margin-right:100px; margin-left:100px" align="center">
+                    <div id="joueur1_joue" align="middle">
 		</div>
+<img src="{{app.request.basepath}}/image/verso.jpg" height = 200  width = 150 alt="verso" align="center" float:right onclick="tirerCarte()"/>
+		
+                <div id = "joueur2_joue" align="middle"> 
 
-		<div id = "joueur2" align="middle"> 
+		</div>
+                
+                </div>
+
+                <div id = "joueur2" align="center"> 
 			Player 2
 <img src="{{app.request.basepath}}/image/verso.jpg" height = 200  width = 150 alt="verso"/>
 		</div>

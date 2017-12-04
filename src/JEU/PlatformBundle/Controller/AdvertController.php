@@ -159,6 +159,8 @@ class AdvertController extends Controller{
        } 
     } 
         return $this->render('JEUPlatformBundle:Advert:form.html.twig');*/
+        
+        
     }
           
     public function menuAction()
