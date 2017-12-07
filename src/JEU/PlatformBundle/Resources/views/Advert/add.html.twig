@@ -6,17 +6,15 @@
   <h2>Connexion</h2>
 
 <div class="well">
-    <form method="post" action="{JEUPlatformBundle:Advert:add}">
     <fieldset>
-    <legend>Connexion</legend>
+    <legend>Connectez-vous</legend>
     <p>
-    <label for="pseudo">Pseudo :</label><input name="pseudo" type="text" id="pseudo" /><br />
-    <label for="password">Mot de Passe :</label><input type="password" name="password" id="password" />
+        {{ form_start(form) }}
+     {{ form_widget(form) }}
+     <button type="submit" > Connexion </button>
+     <a href="{{ path('jeu_platform_signin') }}">Pas encore inscrit ?</a>
+     {{ form_end(form) }}
     </p>
-    </fieldset>
-    <p><input type="submit" value="Connexion" /></p></form>
-    <a href="{{ path('jeu_platform_signin') }}">Pas encore inscrit ?</a>
-     
     </div>
     </body>
     </html>

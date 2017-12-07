@@ -3,6 +3,7 @@
 namespace JEU\PlatformBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Joueur
@@ -17,7 +18,8 @@ class Joueur
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * 
+     * @Assert\NotBlank()
      */
     private $id;
 
@@ -26,6 +28,8 @@ class Joueur
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255)
+     * 
+     * @Assert\NotBlank()
      */
     private $password;
 
@@ -36,6 +40,16 @@ class Joueur
      */
     private $score;
 
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="connecte", type="boolean", default=false)
+     * 
+     *
+     */
+    private $connecte;
+    
     public function __construct(){
         
     }
@@ -43,7 +57,7 @@ class Joueur
     /**
      * Set id
      *
-     * @param string $password
+     * @param string
      * 
      * @return int
      */
@@ -62,6 +76,31 @@ class Joueur
     public function getId()
     {
         return $this->id;
+    }
+    
+    
+    /**
+     * Set bollean
+     *
+     * @param boolean 
+     * 
+     * @return int
+     */
+    public function setConnecte($is)
+    {
+        $this->connecte = $is;
+
+        return $this;
+    }
+
+    /**
+     * Get connecte
+     *
+     * @return boolean
+     */
+    public function getConnecte()
+    {
+        return $this->connecte;
     }
 
 
