@@ -17,26 +17,41 @@
     <div id="header" class="jumbotron">
       <h1>Love letters</h1>
     </div>
-      <div id="joueur1" align="center">
+
+
+
+<div id="manche">
+
+<div id="fond" style="background-image:url({{app.request.basepath}}/image/fond.jpg); float:center ; background-size: cover ; height: 800px; margin-right:100px; margin-left:100px" align="center">
+<div id="joueur1" align="center">
 			Player 1
-            <img src="{{app.request.basepath}}/image/verso.jpg" height = 200  width = 150 alt="verso"/>
+            <img src="{{app.request.basepath}}/image/verso.jpg" height = 200  width = 150 alt="verso" onclick="jouerCarte1()"/>
+		</div>
+                    <div id="joueur1_joue" style=" width: cover; height: 110px; padding: 10px; border: 1px solid #aaaaaa;" "  ondrop="drop(event,id,pioche)" ondragover="allowDrop(event, id)">
 		</div>
 
-		<div style="background-image:url({{app.request.basepath}}/image/fond.jpg); float:center ; background-size: cover ; margin-right:100px; margin-left:100px" align="center">
-                    <div id="joueur1_joue" align="middle">
-		</div>
-<img src="{{app.request.basepath}}/image/verso.jpg" height = 200  width = 150 alt="verso" align="center" float:right onclick="tirerCarte()"/>
-		
-                <div id = "joueur2_joue" align="middle"> 
+<div id="horsjeu">
+    
+<img src="{{app.request.basepath}}/image/verso.jpg" align="center" height = 100  width = 75 alt="verso" style="margin-top: 20px; margin-bottom: 20px; float:right;" onclick="tirerCarte()"/>
+<input type="image" height = 50  width = 80 value="Endtour" style="margin-top: 20px; margin-bottom: 20px ; float:right;" src = "{{app.request.basepath}}/image/fleche.png"  onclick="" />
+</div>
 
-		</div>
-                
-                </div>
+<div id="joueur2_joue" style=" width: cover; height: 110px; padding: 10px; border: 1px solid #aaaaaa;" "  ondrop="drop(event,id,pioche)" ondragover="allowDrop(event, id)">
+</div>
+
 
                 <div id = "joueur2" align="center"> 
 			Player 2
-<img src="{{app.request.basepath}}/image/verso.jpg" height = 200  width = 150 alt="verso"/>
+<img src="{{app.request.basepath}}/image/verso.jpg" height = 200  width = 150 alt="verso" onclick="jouerCarte()"/>
 		</div>
+
+</div>
+</div>
+
+
+
+
+
 
 
     <div class="row">
@@ -68,20 +83,32 @@
                         
 				function tirerCarte(){
 				document.getElementById('joueur1').innerHTML = '<div> Player 1 </div>' ;
-				document.getElementById('joueur1').innerHTML += '<img src="{{app.request.basepath}}/image/verso.jpg" width="150" height="200" />';
-				document.getElementById('joueur1').innerHTML += '<img src="{{app.request.basepath}}/image/verso.jpg" width="150" height="200"/>';
+				document.getElementById('joueur1').innerHTML += '<img src="{{app.request.basepath}}/image/verso.jpg" width="150" height="200" onclick="jouerCarte1()"/>';
+				document.getElementById('joueur1').innerHTML += '<img src="{{app.request.basepath}}/image/verso.jpg" width="150" height="200"onclick="jouerCarte1()"/>';
+			};
+                        
+                        function tirerCarte2(){
+			
 				document.getElementById('joueur2').innerHTML = '<div> Player 2 </div>' ;
-                                document.getElementById('joueur2').innerHTML += '<img src="{{app.request.basepath}}/image/verso.jpg" width="150" height="200"/>';
-                                document.getElementById('joueur2').innerHTML += '<img src="{{app.request.basepath}}/image/verso.jpg" width="150" height="200" />';
+                                document.getElementById('joueur2').innerHTML += '<img src="{{app.request.basepath}}/image/verso.jpg" width="150" height="200" onclick="jouerCarte()"/>';
+                                document.getElementById('joueur2').innerHTML += '<img src="{{app.request.basepath}}/image/verso.jpg" width="150" height="200" onclick="jouerCarte()" />';
 			};
                         
                         function jouerCarte(){
-				document.getElementById('joueur1').innerHTML = '<div align="center">  </div>' ;
-				document.getElementById('joueur1').innerHTML += '<img src="../Applications/MAMP/htdocs/Symfony/web/image/verso.jpg" width="150" height="200" />';
-				document.getElementById('joueur1').innerHTML += '<img src="../Applications/MAMP/htdocs/Symfony/web/image/verso.jpg" width="150" height="200"/>';
+				 document.getElementById('joueur2').innerHTML = '<div> Player 2 </div>' ;
+				document.getElementById('joueur2').innerHTML += '<img src="{{app.request.basepath}}/image/verso.jpg" width="150" height="200" onclick="jouerCarte()"/>';
+				document.getElementById('joueur2_joue').innerHTML += '<img src="{{app.request.basepath}}/image/baron.jpg" width="150" height="200"/>';
+			};
+                        
+                        function jouerCarte1(){
+				 document.getElementById('joueur1').innerHTML = '<div> Player 1 </div>' ;
+				document.getElementById('joueur1').innerHTML += '<img src="{{app.request.basepath}}/image/verso.jpg" width="150" height="200" onclick="jouerCarte1()"/>';
+				document.getElementById('joueur1_joue').innerHTML += '<img src="{{app.request.basepath}}/image/baron.jpg" width="150" height="200" />';
+				
 			};
 		
 		</script>
+
   {% endblock %}
 
   </body>

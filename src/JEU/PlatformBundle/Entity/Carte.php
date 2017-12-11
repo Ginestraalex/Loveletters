@@ -40,6 +40,7 @@ class Carte
      *
      * @ORM\Column(name="effet", type="string", length=255)
      */
+    
     private $effet;
 
     public function __construct($v)
@@ -47,31 +48,31 @@ class Carte
         $valeur = $v;
         switch ($valeur) {
             case "9":
-                $url = "/Applications/MAMP/htdocs/Symfony/src/image/verso.png";
+                $url = "{{app.request.basepath}}/image/verso.png";
                 break;
             case "8":
-                $url = "/Applications/MAMP/htdocs/Symfony/src/image/princess.png";
+                $url = "{{app.request.basepath}}/image/princess.png";
                 break;
             case "7":
-                $url = "/Applications/MAMP/htdocs/Symfony/src/image/countess.png";
+                $url = "{{app.request.basepath}}/image/countess.png";
                 break;
             case "6":
-                $url = "/Applications/MAMP/htdocs/Symfony/src/image/king.png";
+                $url = "{{app.request.basepath}}/image/king.png";
                 break;
             case "5":
-                $url = "/Applications/MAMP/htdocs/Symfony/src/image/prince.png";
+                $url = "{{app.request.basepath}}/image/prince.png";
                 break;
             case "4":
-                $url = "/Applications/MAMP/htdocs/Symfony/src/image/handmaid.png";
+                $url = "{{app.request.basepath}}/image/handmaid.png";
                 break;
             case "3":
-                $url = "/Applications/MAMP/htdocs/Symfony/src/image/baron.png";
+                $url = "{{app.request.basepath}}/image/baron.png";
                 break;
             case "2":
-                $url = "/Applications/MAMP/htdocs/Symfony/src/image/priest.png";
+                $url = "{{app.request.basepath}}/image/priest.png";
                 break;
             case "1":
-                $url = "/Applications/MAMP/htdocs/Symfony/src/image/guard.png";
+                $url = "/{{app.request.basepath}}/image/guard.png";
                 break;
         }
     }
@@ -153,9 +154,39 @@ class Carte
      *
      * @return string
      */
-    public function getEffet()
+    public function getEffet($v)
     {
-        return $this->effet;
+        $valeur = $v;
+        switch ($valeur) {
+            case "9":
+                $effet = "/Applications/MAMP/htdocs/Symfony/src/image/verso.png";
+                break;
+            case "8":
+                $effet = "/Applications/MAMP/htdocs/Symfony/src/image/princess.png";
+                break;
+            case "7":
+                $effet = "/Applications/MAMP/htdocs/Symfony/src/image/countess.png";
+                break;
+            case "6":
+                $effet = "/Applications/MAMP/htdocs/Symfony/src/image/king.png";
+                break;
+            case "5":
+                $effet = "/Applications/MAMP/htdocs/Symfony/src/image/prince.png";
+                break;
+            case "4":
+                $effet = "/Applications/MAMP/htdocs/Symfony/src/image/handmaid.png";
+                break;
+            case "3":
+                $effet = "/Applications/MAMP/htdocs/Symfony/src/image/baron.png";
+                break;
+            case "2":
+                $effet = "/Applications/MAMP/htdocs/Symfony/src/image/priest.png";
+                break;
+            case "1":
+                $effet = "/Applications/MAMP/htdocs/Symfony/src/image/guard.png";
+                break;
+        }
+            return $this->effet;
     }
 }
 

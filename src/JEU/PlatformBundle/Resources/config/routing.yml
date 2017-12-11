@@ -17,7 +17,7 @@ jeu_platform_signin:
 
 jeu_platform_view:
     path:     /platform/view
-    defaults: { _controller: JEUPlatformBundle:Advert:view}
+    defaults: { _controller: JEUPlatformBundle:Advert:initialisationmanche}
  
 jeu_platform_add:
     path:     /platform/add
@@ -35,4 +35,8 @@ jeu_platform_delete:
     defaults: { _controller: JEUPlatformBundle:Advert:delete ,id: 8}
     requirements:
         id:    \d{1} 
-        #parametres requis alors que defaults: parametre optionnel et valeur par défaut        
+        #parametres requis alors que defaults: parametre optionnel et valeur par défaut 
+        
+jeu_platform_jeu:
+    path:     /platform/jeu
+    defaults: { _controller: JEUPlatformBundle:Advert:initialisationmanche}

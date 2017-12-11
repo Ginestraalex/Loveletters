@@ -44,11 +44,19 @@ class Joueur
     /**
      * @var boolean
      *
-     * @ORM\Column(name="connecte", type="boolean", default=false)
+     * @ORM\Column(name="connecte", type="boolean",nullable=true ,options={"default":false})
      * 
      *
      */
     private $connecte;
+    
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="cartes", type="array", nullable=true)
+     * 
+     */
+    private $cartes;
     
     public function __construct(){
         
@@ -84,13 +92,12 @@ class Joueur
      *
      * @param boolean 
      * 
-     * @return int
+     * @return boolean
      */
     public function setConnecte($is)
     {
         $this->connecte = $is;
 
-        return $this;
     }
 
     /**
@@ -151,6 +158,30 @@ class Joueur
     public function getScore()
     {
         return $this->score;
+    }
+    
+    /**
+     * Set cartes
+     *
+     * @param Carte
+     * 
+     * @return array
+     */
+    public function setCartes($carte)
+    {
+        $this->cartes = $carte;
+
+        return $this;
+    }
+
+    /**
+     * Get cartes
+     *
+     * @return array
+     */
+    public function getCartes()
+    {
+        return $this->cartes;
     }
 }
 

@@ -135,7 +135,7 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
             // jeu_platform_view
             if ('/platform/view' === $pathinfo) {
-                return array (  '_controller' => 'JEU\\PlatformBundle\\Controller\\AdvertController::viewAction',  '_route' => 'jeu_platform_view',);
+                return array (  '_controller' => 'JEU\\PlatformBundle\\Controller\\AdvertController::initialisationmancheAction',  '_route' => 'jeu_platform_view',);
             }
 
             // jeu_platform_add
@@ -151,6 +151,11 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             // jeu_platform_delete
             if (0 === strpos($pathinfo, '/platform/delete') && preg_match('#^/platform/delete(?:/(?P<id>\\d{1}))?$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'jeu_platform_delete')), array (  '_controller' => 'JEU\\PlatformBundle\\Controller\\AdvertController::deleteAction',  'id' => 8,));
+            }
+
+            // jeu_platform_jeu
+            if ('/platform/jeu' === $pathinfo) {
+                return array (  '_controller' => 'JEU\\PlatformBundle\\Controller\\AdvertController::initialisationmancheAction',  '_route' => 'jeu_platform_jeu',);
             }
 
         }

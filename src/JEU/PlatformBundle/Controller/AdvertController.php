@@ -8,6 +8,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoudation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use JEU\PlatformBundle\Entity\Joueur;
+use JEU\PlatformBundle\Entity\Carte;
+use JEU\PlatformBundle\Entity\Defausse;
+use JEU\PlatformBundle\Entity\Manche;
+use JEU\PlatformBundle\Entity\Partie;
+use JEU\PlatformBundle\Entity\Pioche;
 use JEU\PlatformBundle\Form\JoueurType;
 
 class AdvertController extends Controller{
@@ -17,13 +22,25 @@ class AdvertController extends Controller{
                    $form=$this->createForm(JoueurType::class,$product);
                    $form->handleRequest($request);
                    if($form->isSubmitted() && $form->isValid()){
-                        $repository=$this->getDoctrine()->getRepository('JEUPlatformBundle:Joueur');
+                       $em=$this->getDoctrine()->getManager();
+                        $repository=$em->getRepository('JEUPlatformBundle:Joueur');
                         $product2=$repository->find($product);
             
                         if($product2 != $product){
                             throw $this->createNotFoundException("Aucun membre de cet id et/ou de ce mot de passe");
                          }else{
-                        return $this->render('JEUPlatformBundle:Advert:edit.html.twig');
+                        /*     $var=true;
+                        $product.setConnecte($var);
+                        $repository->persist($product);
+                        $repository->flush();
+                        $session=$this->getRequest()->getSession();
+                        $session->set('id',$product.getId());*/
+                        
+                             $product2->setConnecte(true);
+                             $em->persist($product2);
+                             $em->flush();
+                        $id=$product->getId();
+                        return $this->render('JEUPlatformBundle:Advert:edit.html.twig',array('id'=>$id));
                          }
                     }
                    $formView=$form->createView();
@@ -33,10 +50,11 @@ class AdvertController extends Controller{
                 
    public function viewAction()
                 {
-
-    return $this->render('JEUPlatformBundle:Advert:view.html.twig');
-                    #$tag= $request->query->get('tag');
-                    #return new Response("Affichage de l'element d'id".$id."avec le tag :".$tag);
+                        /*$repository=$this->getDoctrine()->getRepository('JEUPlatformBundle:Joueur');
+                        $QueryBuilder=$this->_em->createQueryBuilder()->select('id')->from('JEUPlatformBundle','id')->where('Joueur.connecte==true');
+                        $joueurs=$jou->getQuery()->getResult();*/
+                        return $this->render('JEUPlatformBundle:Advert:view.html.twig');
+                 
                 } 
                 
    public function addAction(Request $request)
@@ -51,7 +69,10 @@ class AdvertController extends Controller{
                         if($product2 != $product){
                             throw $this->createNotFoundException("Aucun membre de cet id et/ou de ce mot de passe");
                          }else{
-                        return $this->render('JEUPlatformBundle:Advert:edit.html.twig');
+                             $id=$product->getId();
+                                 
+                             
+                        return $this->render('JEUPlatformBundle:Advert:edit.html.twig',array('id'=>$id));
                          }
                     }
                    $formView=$form->createView();
@@ -70,9 +91,11 @@ class AdvertController extends Controller{
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $em=$this->getDoctrine()->getManager();
+            $product->setConnecte(true);
             $em->persist($product);
             $em->flush();
-            return $this->render('JEUPlatformBundle:Advert:edit.html.twig');
+            $id=$product->getId();
+            return $this->render('JEUPlatformBundle:Advert:edit.html.twig',array('id'=>$id));
         }
         $formView=$form->createView();
         return $this->render('JEUPlatformBundle:Advert:form.html.twig',array('form'=>$formView));
@@ -89,15 +112,11 @@ class AdvertController extends Controller{
     return $this->render('OCPlatformBundle:Advert:delete.html.twig');
     }
     
-    public function editAction(Request $request)
+    public function editAction()
   {
-    if ($request->isMethod('POST')) {
-      $request->getSession()->getFlashBag()->add('notice', 'Joueur bien modifiée.');
-      return $this->redirectToRoute('jeu_platform_view', array('id' => 5));
-    }
-    
-    return $this->render('JEUPlatformBundle:Advert:edit.html.twig');
+      return $this->render('JEUPlatformBundle:Advert:edit.html.twig');
   }
+    
   
   public function connexionAction(Request $request, Joueur $joueur){
         
@@ -105,7 +124,84 @@ class AdvertController extends Controller{
     }
   
   public function deconnexionAction(){
+      $repository=$this->getDoctrine()->getRepository('JEUPlatformBundle:Joueur');
+      $product2=$repository->findByConnecte(true);
+      $product2.setConnecte(FALSE);
+      indexAction();
+  }
+  
+  
+  // Fonction qui gère le jeu
+  
+  public function initialisationmancheAction(){
+      $em=$this->getDoctrine()->getManager();
+      $joueur1=$em->getRepository('JEUPlatformBundle:Joueur')->find(1);
       
+      
+      $joueur2=$em->getRepository('JEUPlatformBundle:Joueur')->find(2);
+      
+     
+      
+      
+      $pioche=new Pioche();
+      $em->persist($pioche);
+      
+      $em->flush();
+      
+      $partie=new Partie();
+      $manche=new Manche($pioche->getId());
+      //$manche->setPioche($pioche);
+      //$manche->setListeJoueur($joueur1);
+      //$manche->setListeJoueur($joueur2);
+      
+      $partie=new Partie();
+      $manche->setNoPartie($partie->getId());
+      
+      $em->persist($manche);
+      $em->flush(); 
+      
+      
+      $partie->setJoueur($joueur1);
+      $partie->setJoueur($joueur2);
+      $partie->setNomPartie('Partie1');
+      
+      
+      $em->persist($partie);
+      
+      
+      $em->flush();
+      
+      $joueur1->setCartes($pioche->getCarteNum(4));
+      $joueur2->setCartes($pioche->getCarteNum(5));
+      
+      $em->persist($joueur1);
+      $em->persist($joueur2);
+      
+      $em->flush();
+      
+      $idjoueurs=array();
+      $idcartes=array();
+      $piocher=array();
+      
+      array_push($idjoueurs, $joueur1->getId());
+      array_push($idjoueurs, $joueur2->getId());
+      for($k=0;$k<16;$k++){
+          $a=$pioche->getCarteNum($k);
+          $c=new Carte($a);
+          array_push($idcartes, $c->getValeur());
+          array_push($piocher,$c->getUrl());
+      }
+      $a1=$pioche->getCarteNum(0);
+      $a2=$pioche->getCarteNum(1);
+      $a3=$pioche->getCarteNum(2);
+      $a4=$pioche->getCarteNum(3);
+      $c1=new Carte($a1);
+      $c2=new Carte($a2);
+      $c3=new Carte($a3);
+      $c4=new Carte($a4);
+      
+      $content=$this->render('JEUPlatformBundle:Advert:view.html.twig',array('first'=>$c1->getUrl(),'second'=>$c2->getUrl(),'third'=>$c3->getUrl(),'four'=>$c4->getUrl(),'piocher'=>$piocher,'id'=>$idcartes,'id_partie'=>$partie->getId(),'id_manche'=>$manche->getId()));
+      return new Response($content);
   }
   
 }

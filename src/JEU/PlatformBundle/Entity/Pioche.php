@@ -29,21 +29,21 @@ class Pioche
     private $listeCarte;
 
     public function __construct(){
-        $listeCarte = array(new Carte("8"));
-        array_push($listeCarte,new Carte("7"));
-        array_push($listeCarte,new Carte("6"));
-        array_push($listeCarte,new Carte("5"));
-        array_push($listeCarte,new Carte("5"));
-        array_push($listeCarte,new Carte("4"));
-        array_push($listeCarte,new Carte("4"));
-        array_push($listeCarte,new Carte("3"));
-        array_push($listeCarte,new Carte("3"));
-        array_push($listeCarte,new Carte("2"));
-        array_push($listeCarte,new Carte("2"));
-        array_push($listeCarte,new Carte("1"));
-        array_push($listeCarte,new Carte("1"));
-        array_push($listeCarte,new Carte("1"));
-        array_push($listeCarte,new Carte("1"));
+        $listeCarte = array(new Carte(8));
+        array_push($listeCarte,new Carte(7));
+        array_push($listeCarte,new Carte(6));
+        array_push($listeCarte,new Carte(5));
+        array_push($listeCarte,new Carte(5));
+        array_push($listeCarte,new Carte(4));
+        array_push($listeCarte,new Carte(4));
+        array_push($listeCarte,new Carte(3));
+        array_push($listeCarte,new Carte(3));
+        array_push($listeCarte,new Carte(2));
+        array_push($listeCarte,new Carte(2));
+        array_push($listeCarte,new Carte(1));
+        array_push($listeCarte,new Carte(1));
+        array_push($listeCarte,new Carte(1));
+        array_push($listeCarte,new Carte(1));
         $id=16;
     }
     
@@ -80,15 +80,16 @@ class Pioche
         return $this;
     }
 
+    
+    
     /**
      * Get listeCarte
      *
      * @return array
      */
-    public function getCarte()
+    public function getCarteNum($num)
     {
-        $id=$id-1;
-        return $this->listeCarte[$id+1];
+        return $this->listeCarte[$num];
     }
     
     /**

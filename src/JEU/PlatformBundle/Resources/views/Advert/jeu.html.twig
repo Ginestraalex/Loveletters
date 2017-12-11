@@ -1,0 +1,65 @@
+{# empty Twig template #}
+    <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}JEU Plateforme{% endblock %}</title>
+
+    {% block stylesheets %}
+      {# On charge le CSS de bootstrap depuis le site directement #}
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    {% endblock %}
+  </head>
+
+  <body>
+  <div class="container">
+    <div id="header" class="jumbotron">
+      <h1>Love letters</h1>
+    </div>
+
+
+
+<div id="manche">
+
+<div id="fond" style="background-image:url({{app.request.basepath}}/image/fond.jpg); float:center ; background-size: cover ; height: 800px; margin-right:100px; margin-left:100px" align="center">
+<div id="joueur1" align="center">
+			Player 1
+            <img src="{{app.request.basepath}}/image/verso.jpg" height = 200  width = 150 alt="verso"/>
+		</div>
+                    <div id="joueur1_joue" style=" width: cover; height: 110px; padding: 10px; border: 1px solid #aaaaaa;" "  ondrop="drop(event,id,pioche)" ondragover="allowDrop(event, id)">
+		</div>
+
+<div id="horsjeu">
+<img src="{{app.request.basepath}}/image/verso.jpg" align="center" height = 100  width = 75 alt="verso" style="margin-top: 20px; margin-bottom: 20px; float:right;" onclick="tirerCarte()"/>
+<img src="{{ asset(first) }}" align="center" height = 100  width = 75 alt="verso" style="margin-top: 20px; margin-bottom: 20px; float:right;" onclick="tirerCarte()"/>
+<img src="{{ asset(second) }}" align="center" height = 100  width = 75 alt="verso" style="margin-top: 20px; margin-bottom: 20px; float:right;" onclick="tirerCarte()"/>
+<img src="{{ asset(third) }}" align="center" height = 100  width = 75 alt="verso" style="margin-top: 20px; margin-bottom: 20px; float:right;" onclick="tirerCarte()"/>
+<img src="{{ asset(four) }}" align="center" height = 100  width = 75 alt="verso" style="margin-top: 20px; margin-bottom: 20px; float:right;" onclick="tirerCarte()"/>
+<input type="image" height = 50  width = 80 value="Endtour" style="margin-top: 20px; margin-bottom: 20px ; float:right;" src = "{{app.request.basepath}}/image/Baron.png"  onclick="" />
+</div>
+
+<div id="joueur2_joue" style=" width: cover; height: 110px; padding: 10px; border: 1px solid #aaaaaa;" "  ondrop="drop(event,id,pioche)" ondragover="allowDrop(event, id)">
+</div>
+
+
+                <div id = "joueur2" align="center"> 
+			Player 2
+<img src="{{app.request.basepath}}/image/verso.jpg" height = 200  width = 150 alt="verso"/>
+		</div>
+
+</div>
+</div>
+                
+                    <script>
+        
+  
+ 
+        </script>
+        
+        <input type="submit" value="Jouer" onclick="initialisation()"/>
+
+<img src="{{ asset(first) }}" align="center" height = 100  width = 75 alt="verso" style="margin-top: 20px; margin-bottom: 20px; float:right;" onclick="tirerCarte()"/>
+    <img src="{{ asset(second) }}" align="center" height = 100  width = 75 alt="verso" style="margin-top: 20px; margin-bottom: 20px; float:right;" onclick="tirerCarte()"/>
+    <img src="{{ asset(third) }}" align="center" height = 100  width = 75 alt="verso" style="margin-top: 20px; margin-bottom: 20px; float:right;" onclick="tirerCarte()"/>

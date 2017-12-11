@@ -23,26 +23,46 @@ class Manche
 
     /**
      * @var int
-     *
-     * @ORM\Column(name="no", type="integer", nullable=true)
+     * 
+     * @ORM\Column(name="pioche", type="integer")
+     * 
+     * @ORM\OneToOne(targetEntity="JEUPlatformBundle\Entity\Pioche",cascade={"persist"})
      */
-    private $no;
+    private $pioche;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="gagnant", type="string", length=255)
+     * @ORM\Column(name="gagnant", type="string", length=255, nullable=true)
      */
     private $gagnant;
 
     /**
-     * @var array
+     * 
      *
      * @ORM\Column(name="listeJoueur", type="array", nullable=true)
+     * 
+     * 
      */
     private $listeJoueur;
+    
+    
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="no", type="integer",nullable=true)
+     * 
+     * @ORM\ManyToOne(targetEntity="JEUPlatformBundle\Entity\Partie",cascade={"persist"})
+     */
+    private $no;
+    
 
-
+    
+    public function __construct($nom){
+           $this->pioche=$nom ;
+           
+        }
+        
     /**
      * Get id
      *
@@ -54,13 +74,13 @@ class Manche
     }
 
     /**
-     * Set no
+     * Set pioche
      *
-     * @param integer $no
+     * @param pioche $no
      *
-     * @return Manche
+     * @return Pioche
      */
-    public function setNo($no)
+    public function setPioche($no)
     {
         $this->no = $no;
 
@@ -68,13 +88,13 @@ class Manche
     }
 
     /**
-     * Get no
+     * Get pioche
      *
-     * @return int
+     * @return pioche
      */
-    public function getNo()
+    public function getPioche()
     {
-        return $this->no;
+        return $this->pioche;
     }
 
     /**
@@ -104,15 +124,14 @@ class Manche
     /**
      * Set listeJoueur
      *
-     * @param array $listeJoueur
+     * @param JEU\PlatformBundle\Entity\Joueur $joueur
      *
-     * @return Manche
+     * 
      */
-    public function setListeJoueur($listeJoueur)
+    public function setListeJoueur(JEU\PlatformBundle\Entity\Joueur $joueur)
     {
-        $this->listeJoueur = $listeJoueur;
+        $this->listeJoueur[] = $joueur;
 
-        return $this;
     }
 
     /**
@@ -124,5 +143,30 @@ class Manche
     {
         return $this->listeJoueur;
     }
+    
+    /**
+     * Set noPartie
+     *
+     * @param integer $no
+     *
+     * @return integer
+     */
+    public function setNoPartie($no)
+    {
+        $this->noPartie = $no;
+
+        return $this;
+    }
+
+    /**
+     * Get noPartie
+     *
+     * @return int
+     */
+    public function getNoPartie()
+    {
+        return $this->noPartie;
+    }
+    
 }
 
