@@ -40,7 +40,9 @@ class AdvertController extends Controller{
                              $em->persist($product2);
                              $em->flush();
                         $id=$product->getId();
-                        return $this->render('JEUPlatformBundle:Advert:edit.html.twig',array('id'=>$id));
+                        return $this->render('JEUPlatformBundle:Advert:edit.html.twig');
+                        // affiche id utlisateur
+                        //return $this->render('JEUPlatformBundle:Advert:edit.html.twig',array('id'=>$id));
                          }
                     }
                    $formView=$form->createView();
@@ -71,8 +73,9 @@ class AdvertController extends Controller{
                          }else{
                              $id=$product->getId();
                                  
-                             
-                        return $this->render('JEUPlatformBundle:Advert:edit.html.twig',array('id'=>$id));
+                            return $this->render('JEUPlatformBundle:Advert:edit.html.twig');
+                            // affiche id utlisateur
+                        //return $this->render('JEUPlatformBundle:Advert:edit.html.twig',array('id'=>$id));
                          }
                     }
                    $formView=$form->createView();
@@ -95,7 +98,9 @@ class AdvertController extends Controller{
             $em->persist($product);
             $em->flush();
             $id=$product->getId();
-            return $this->render('JEUPlatformBundle:Advert:edit.html.twig',array('id'=>$id));
+            return $this->render('JEUPlatformBundle:Advert:edit.html.twig');
+            //affiche id utilisateur
+            //return $this->render('JEUPlatformBundle:Advert:edit.html.twig',array('id'=>$id));
         }
         $formView=$form->createView();
         return $this->render('JEUPlatformBundle:Advert:form.html.twig',array('form'=>$formView));

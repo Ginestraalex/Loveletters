@@ -33,10 +33,10 @@
 <div id="horsjeu">
     
 <img src="{{app.request.basepath}}/image/verso.jpg" align="center" height = 100  width = 75 alt="verso" style="margin-top: 20px; margin-bottom: 20px; float:right;" onclick="tirerCarte()"/>
-<input type="image" height = 50  width = 80 value="Endtour" style="margin-top: 20px; margin-bottom: 20px ; float:right;" src = "{{app.request.basepath}}/image/fleche.png"  onclick="" />
+<input type="image" height = 50  width = 80 value="Endtour" style="margin-top: 20px; margin-bottom: 20px ; float:right;" src = "{{app.request.basepath}}/image/fleche.png"  onclick="tirerCarte2()" />
 </div>
 
-<div id="joueur2_joue" style=" width: cover; height: 110px; padding: 10px; border: 1px solid #aaaaaa;" "  ondrop="drop(event,id,pioche)" ondragover="allowDrop(event, id)">
+<div id="joueur2_joue" style=" width: cover; height: 110px; padding: 10px; border: 1px solid #aaaaaa;"   ondrop="drop(event,id,pioche)" ondragover="allowDrop(event, id)">
 </div>
 
 
@@ -80,6 +80,9 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script>
+        
+        
+                        
                         
 				function tirerCarte(){
 				document.getElementById('joueur1').innerHTML = '<div> Player 1 </div>' ;
@@ -107,6 +110,10 @@
 				
 			};
 		
+                
+                
+                
+                
 		</script>
 
   {% endblock %}
