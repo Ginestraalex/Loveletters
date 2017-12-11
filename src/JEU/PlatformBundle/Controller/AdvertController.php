@@ -120,6 +120,8 @@ class AdvertController extends Controller{
     public function editAction()
   {
       return $this->render('JEUPlatformBundle:Advert:edit.html.twig');
+      //pour envoyer l'id du membre qui vient de se conencter
+      //return $this->render('JEUPlatformBundle:Advert:edit.html.twig',$id);
   }
     
   
@@ -131,7 +133,7 @@ class AdvertController extends Controller{
   public function deconnexionAction(){
       $repository=$this->getDoctrine()->getRepository('JEUPlatformBundle:Joueur');
       $product2=$repository->findByConnecte(true);
-      $product2.setConnecte(FALSE);
+      $product2.setConnecte(false);
       indexAction();
   }
   
@@ -199,13 +201,11 @@ class AdvertController extends Controller{
       $a1=$pioche->getCarteNum(0);
       $a2=$pioche->getCarteNum(1);
       $a3=$pioche->getCarteNum(2);
-      $a4=$pioche->getCarteNum(3);
       $c1=new Carte($a1);
       $c2=new Carte($a2);
       $c3=new Carte($a3);
-      $c4=new Carte($a4);
-      
-      $content=$this->render('JEUPlatformBundle:Advert:view.html.twig',array('first'=>$c1->getUrl(),'second'=>$c2->getUrl(),'third'=>$c3->getUrl(),'four'=>$c4->getUrl(),'piocher'=>$piocher,'id'=>$idcartes,'id_partie'=>$partie->getId(),'id_manche'=>$manche->getId()));
+
+      $content=$this->render('JEUPlatformBundle:Advert:view.html.twig',array('first'=>$c1->getUrl(),'second'=>$c2->getUrl(),'third'=>$c3->getUrl(),'piocher'=>$piocher,'id'=>$idcartes,'id_partie'=>$partie->getId(),'id_manche'=>$manche->getId()));
       return new Response($content);
   }
   

@@ -27,22 +27,26 @@
 			Player 1
             <img src="{{app.request.basepath}}/image/verso.jpg" height = 200  width = 150 alt="verso" onclick="jouerCarte1()"/>
 		</div>
-                    <div id="joueur1_joue" style=" width: cover; height: 110px; padding: 10px; border: 1px solid #aaaaaa;" "  ondrop="drop(event,id,pioche)" ondragover="allowDrop(event, id)">
+                    <div id="joueur1_joue" style=" width: cover; height: 110px; padding: 10px; border: 1px solid #aaaaaa;" >
 		</div>
 
 <div id="horsjeu">
     
 <img src="{{app.request.basepath}}/image/verso.jpg" align="center" height = 100  width = 75 alt="verso" style="margin-top: 20px; margin-bottom: 20px; float:right;" onclick="tirerCarte()"/>
 <input type="image" height = 50  width = 80 value="Endtour" style="margin-top: 20px; margin-bottom: 20px ; float:right;" src = "{{app.request.basepath}}/image/fleche.png"  onclick="tirerCarte2()" />
+  <img src="{{ asset(first) }}" align="center" height = 100  width = 75 alt="Defausse1" style="margin-top: 20px; margin-bottom: 20px; float:right;" />
+    <img src="{{ asset(second) }}" align="center" height = 100  width = 75 alt="Defausse2" style="margin-top: 20px; margin-bottom: 20px; float:right;" />
+    <img src="{{ asset(third) }}" align="center" height = 100  width = 75 alt="Defausse3" style="margin-top: 20px; margin-bottom: 20px; float:right;" />
+   
 </div>
 
-<div id="joueur2_joue" style=" width: cover; height: 110px; padding: 10px; border: 1px solid #aaaaaa;"   ondrop="drop(event,id,pioche)" ondragover="allowDrop(event, id)">
+<div id="joueur2_joue" style=" width: cover; height: 110px; padding: 10px; border: 1px solid #aaaaaa;"  >
 </div>
 
 
                 <div id = "joueur2" align="center"> 
 			Player 2
-<img src="{{app.request.basepath}}/image/verso.jpg" height = 200  width = 150 alt="verso" onclick="jouerCarte()"/>
+<img src="{{app.request.basepath}}/image/baron.jpg" height = 200  width = 150 alt="verso" onclick="jouerCarte()"/>
 		</div>
 
 </div>
@@ -79,6 +83,7 @@
     {# Ajoutez ces lignes JavaScript si vous comptez vous servir des fonctionnalités du bootstrap Twitter #}
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    {# Normalement ajout du javascript jeu.js mais plante l'affichage quand on recupere les valeurs passés du controller dans le js#}
     <script>
         
         
@@ -93,20 +98,20 @@
                         function tirerCarte2(){
 			
 				document.getElementById('joueur2').innerHTML = '<div> Player 2 </div>' ;
-                                document.getElementById('joueur2').innerHTML += '<img src="{{app.request.basepath}}/image/verso.jpg" width="150" height="200" onclick="jouerCarte()"/>';
-                                document.getElementById('joueur2').innerHTML += '<img src="{{app.request.basepath}}/image/verso.jpg" width="150" height="200" onclick="jouerCarte()" />';
+                                document.getElementById('joueur2').innerHTML += '<img src="{{app.request.basepath}}/image/baron.jpg" width="150" height="200" onclick="jouerCarte()"/>';
+                                document.getElementById('joueur2').innerHTML += '<img src="{{app.request.basepath}}/image/guard.jpg" width="150" height="200" onclick="jouerCarte()" />';
 			};
                         
                         function jouerCarte(){
 				 document.getElementById('joueur2').innerHTML = '<div> Player 2 </div>' ;
-				document.getElementById('joueur2').innerHTML += '<img src="{{app.request.basepath}}/image/verso.jpg" width="150" height="200" onclick="jouerCarte()"/>';
-				document.getElementById('joueur2_joue').innerHTML += '<img src="{{app.request.basepath}}/image/baron.jpg" width="150" height="200"/>';
+				document.getElementById('joueur2').innerHTML += '<img src="{{app.request.basepath}}/image/baron.jpg" width="150" height="200" onclick="jouerCarte()"/>';
+				document.getElementById('joueur2_joue').innerHTML += '<img src="{{app.request.basepath}}/image/guard.jpg" width="150" height="200"/>';
 			};
                         
                         function jouerCarte1(){
 				 document.getElementById('joueur1').innerHTML = '<div> Player 1 </div>' ;
 				document.getElementById('joueur1').innerHTML += '<img src="{{app.request.basepath}}/image/verso.jpg" width="150" height="200" onclick="jouerCarte1()"/>';
-				document.getElementById('joueur1_joue').innerHTML += '<img src="{{app.request.basepath}}/image/baron.jpg" width="150" height="200" />';
+				document.getElementById('joueur1_joue').innerHTML += '<img src="{{app.request.basepath}}/image/guard.jpg" width="150" height="200" />';
 				
 			};
 		

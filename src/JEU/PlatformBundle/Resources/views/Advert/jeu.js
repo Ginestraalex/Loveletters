@@ -1,30 +1,5 @@
 <script>
-function tirerCarte(){
-				document.getElementById('joueur1').innerHTML = '<div> Player 1 </div>' ;
-				document.getElementById('joueur1').innerHTML += '<img src="{{app.request.basepath}}/image/verso.jpg" width="150" height="200" onclick="jouerCarte1()"/>';
-				document.getElementById('joueur1').innerHTML += '<img src="{{app.request.basepath}}/image/verso.jpg" width="150" height="200"onclick="jouerCarte1()"/>';
-			};
-                        
-                        function tirerCarte2(){
-			
-				document.getElementById('joueur2').innerHTML = '<div> Player 2 </div>' ;
-                                document.getElementById('joueur2').innerHTML += '<img src="{{app.request.basepath}}/image/verso.jpg" width="150" height="200" onclick="jouerCarte()"/>';
-                                document.getElementById('joueur2').innerHTML += '<img src="{{app.request.basepath}}/image/verso.jpg" width="150" height="200" onclick="jouerCarte()" />';
-			};
-                        
-                        function jouerCarte(){
-				 document.getElementById('joueur2').innerHTML = '<div> Player 2 </div>' ;
-				document.getElementById('joueur2').innerHTML += '<img src="{{app.request.basepath}}/image/verso.jpg" width="150" height="200" onclick="jouerCarte()"/>';
-				document.getElementById('joueur2_joue').innerHTML += '<img src="{{app.request.basepath}}/image/baron.jpg" width="150" height="200"/>';
-			};
-                        
-                        function jouerCarte1(){
-				 document.getElementById('joueur1').innerHTML = '<div> Player 1 </div>' ;
-				document.getElementById('joueur1').innerHTML += '<img src="{{app.request.basepath}}/image/verso.jpg" width="150" height="200" onclick="jouerCarte1()"/>';
-				document.getElementById('joueur1_joue').innerHTML += '<img src="{{app.request.basepath}}/image/baron.jpg" width="150" height="200" />';
-				
-			};
-
+// fonction tirerCarte et jouerCarte de view.html à retirer car par la suite ici nous recuperons les cartes de chaque joueur mais i y a un probleme, on envoie par la fonction initialisationmanche du controler des array qui ne se recupere pas dans le javascript
 
 prendre=false;
 fin=false;
@@ -90,7 +65,7 @@ function tirerCarte(){
 				if (pioche>0 && !fin)  {
 						if (i%2 == 0 && !prendre) {	
 							manche = {{ id_manche }};
-							document.getElementById('joueur2').innerHTML += '<img id ="'+pioch+'" src="'+prioche[pioch]+'"  width="75" height="100" " />';
+							document.getElementById('joueur2').innerHTML += '<img id ="'+pioch+'" src="'+pioche[pioch]+'"  width="75" height="100" " />';
 							main2.push(ide[pioch]);
 							pioche--;
 							piocher = true;		
@@ -102,7 +77,31 @@ function tirerCarte(){
                                                         piocher = true;
 						}
                     }
+                    
+function jouerCarte1(){
+if (pioche>0 && !fin)  {
+						if (i%2 == 0 && prendre) {	
+							manche = {{ id_manche }};
+							document.getElementById('joueur2_joue').innerHTML += '<img id ="'+pioch+'" src="'+main2[12-pioch]->getUrl()+'"  width="75" height="100" " />';
+							main2_joue.push(ide[pioch]);	
+						}else{
+							manche = {{ id_manche }};		
+							document.getElementById('joueur1_joue').innerHTML += '<img id = "'+pioch+'" src="'+main1[12-pioch]->getUrl()+'"  width="75" height="100" " />';
+							main1_joue.push(id[pioche]);
+						}
+}
 
+function jouerCarte2(){
+if (pioche>0 && !fin)  {
+						if (i%2 == 0 && prendre) {	
+							document.getElementById('joueur2_joue').innerHTML += '<img id ="'+pioch+'" src="'+main2[13-pioch]->getUrl()+'"  width="75" height="100" " />';
+							main2_joue.push(ide[pioch]);
+								
+						}else{	
+							document.getElementById('joueur1_joue').innerHTML += '<img id = "'+pioch+'" src="'+main1[13-pioch]->getUrl()+'"  width="75" height="100" " />';
+							main1_joue.push(id[pioche]);	
+						}
+}
 </script>
 
 
