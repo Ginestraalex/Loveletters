@@ -72,7 +72,9 @@ class AdvertController extends Controller{
                             throw $this->createNotFoundException("Aucun membre de cet id et/ou de ce mot de passe");
                          }else{
                              $id=$product->getId();
-                                 
+                             $product2->setConnecte(true);
+                             $em->persist($product2);
+                             $em->flush();
                             return $this->render('JEUPlatformBundle:Advert:edit.html.twig');
                             // affiche id utlisateur
                         //return $this->render('JEUPlatformBundle:Advert:edit.html.twig',array('id'=>$id));
@@ -94,9 +96,10 @@ class AdvertController extends Controller{
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $em=$this->getDoctrine()->getManager();
-            $product->setConnecte(true);
-            $em->persist($product);
-            $em->flush();
+            // les 3 lignes ci dessous mettre la valeur connecte à vrai , enlever ici pour que la prof puisse se //connecter deconnecter et reconnecter car fonction deconnecter ne remodifie pas la valeur du //connecte a false
+            //$product->setConnecte(true);
+            //$em->persist($product);
+            //$em->flush();
             $id=$product->getId();
             return $this->render('JEUPlatformBundle:Advert:edit.html.twig');
             //affiche id utilisateur

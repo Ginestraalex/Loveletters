@@ -1914,3 +1914,6 @@ e4e9d8,::1,GET,http://localhost:8888/Symfony/web/app_dev.php/platform/add,151299
 4107ce,::1,GET,http://localhost:8888/Symfony/web/app_dev.php/platform/view,1512996211,,200
 cf485c,::1,GET,http://localhost:8888/Symfony/web/app_dev.php/platform/edit,1512996215,,200
 ecafea,::1,GET,http://localhost:8888/Symfony/web/app_dev.php/platform/add,1512996219,,200
+69ecb2,::1,POST,http://localhost:8888/Symfony/web/app_dev.php/platform/add,1512996384,,200
+424788,::1,GET,http://localhost:8888/Symfony/web/app_dev.php/platform/view,1512996386,,200
+dae9ae,::1,GET,http://localhost:8888/Symfony/web/app_dev.php/platform/add,1512996392,,200
